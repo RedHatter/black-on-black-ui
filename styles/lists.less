@@ -9,24 +9,72 @@
 .list-group {
   li {
     padding-left: @component-padding/2;
-
-    // We want to highlight the background of the list items because we dont know their size.
-    &.selected {
-      color: @text-color-selected;
-      background-color: @background-color-selected;
-      &:before{ display: none; }
-    }
   }
 }
 
 
 // List Tree -------------------
-.list-tree {
+// List Group -------------------
+.list-group, .list-tree, .github-StagingView:focus .github-StagingView-group.is-focused {
   color: @text-color;
-  .selected {
-    color: @text-color-selected;
+
+  li, .github-FilePatchListView-item {
+    background-color: @app-background-color;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(50% - 3px);
+        left: 10px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: @base-color;
+        transform: scale(0);
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &:not(.list-nested-item):hover {
+      color: @text-color-selected;
+    }
+
+    &.selected, &.is-selected {
+      &::after {
+        transform: scale(1);
+      }
+
+      color: @text-color-selected;
+      &:before{ display: none; }
+    }
+  }
+
+  .list-nested-item > .list-tree > li,
+  .list-nested-item > .list-group > li {
+    padding-left: 32px;
+  }
+
+  &.has-collapsable-children {
+    .list-nested-item > .list-item::before {
+      position: relative;
+      top: -1px;
+      margin-right: 16px;
+    }
+
+    .list-nested-item > .list-tree > li,
+    .list-nested-item > .list-group > li {
+      line-height: 28px;
+      padding-left: 28px;
+    }
+
+    li.list-item {
+      margin-left: 28px;
+    }
   }
 }
+
 
 
 // Select List -------------------

@@ -14,13 +14,38 @@
     height: @tab-height;
     line-height: @tab-height;
     font-size: @font-size;
-    border-right: 1px solid @tab-border-color;
     background-color: @tab-background-color;
-    &.active {
-      color: @text-color-selected;
-      background-color: @tab-background-color-active;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background-color: @base-color;
+      transform: scaleX(0);
+      transition: transform 250ms;
     }
 
+    &.active {
+      color: @text-color-selected;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &:hover .close-icon {
+      transform: scale(1);
+    }
+
+    .close-icon {
+      transform: scale(0);
+      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
     // Modified Icon (the circle) -------------------
     &.modified:not(:hover) .close-icon {

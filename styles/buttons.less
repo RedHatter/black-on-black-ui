@@ -7,7 +7,8 @@
 
 .btn {
   color: lighten(@text-color, 6%);
-  background-color: @button-background-color;
+  cursor: pointer;
+
   &:hover,
   &:focus {
     color: @text-color-highlight;
@@ -15,7 +16,6 @@
   }
   &:active {
     color: fade(@text-color-selected, 66%);
-    background-color: darken(@button-background-color, 2%);
   }
   &.selected {
     color: @text-color-selected;

@@ -1,0 +1,33 @@
+.input-text, .input-search, .input-textarea,
+atom-text-editor[mini] {
+  background-color: @app-background-color;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: @base-color;
+    transform: scaleX(0);
+    transition: transform 250ms;
+  }
+
+  &:focus::after, &.is-focused::after {
+    transform: scaleX(1);
+  }
+}
+
+select, .input-select, .settings-view select.form-control {
+  background-color: @app-background-color;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+
+  &:focus, &:hover, &.is-focused {
+    background-color: @app-background-color;
+    border-bottom-color: @base-color;
+  }
+}
