@@ -9,32 +9,50 @@
 .list-group {
   li {
     padding-left: @component-padding/2;
+
+    &::before, &.selected::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 2px;
+      background-color: @base-color;
+      visibility: hidden;
+    }
+
+    &.selected {
+      color: @text-color-selected;
+
+      &::before {
+        visibility: visible;
+      }
+    }
   }
 }
 
-
 // List Tree -------------------
-// List Group -------------------
-.list-group, .list-tree, .github-StagingView:focus .github-StagingView-group.is-focused {
+.list-tree, .github-StagingView:focus .github-StagingView-group.is-focused {
   color: @text-color;
 
   li, .github-FilePatchListView-item {
     background-color: @app-background-color;
-    position: relative;
     cursor: pointer;
 
-    &::after {
+    >:first-child {
+      position: relative;
+
+      &::after {
         content: '';
         display: block;
         position: absolute;
-        top: calc(50% - 3px);
-        left: 10px;
+        top: ~"calc(50% - 3px)";
+        left: -12px;
         width: 5px;
         height: 5px;
         border-radius: 50%;
         background-color: @base-color;
         transform: scale(0);
         transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
     }
 
     &:not(.list-nested-item):hover {
@@ -42,7 +60,7 @@
     }
 
     &.selected, &.is-selected {
-      &::after {
+      >:first-child::after {
         transform: scale(1);
       }
 
