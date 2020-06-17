@@ -4,6 +4,26 @@ body {
   background-color: @app-background-color;
 }
 
+.settings-view .package-card {
+  background-color: @app-background-color;
+  position: relative;
+
+  &:hover {
+    background-color: @app-background-color;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 2px;
+      background-color: @base-color;
+    }
+  }
+}
+
 ::-webkit-scrollbar {
     width: 15px;
     height: 15px;
